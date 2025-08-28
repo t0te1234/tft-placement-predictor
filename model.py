@@ -31,9 +31,6 @@ print("\nTop 10 features by importance:")
 for i in range(min(10, len(indices))):
     print(f"{X.columns[indices[i]]}: {importances[indices[i]]:.4f}")
 
-# ---- Visualizations ----
-
-# Scatter plot: Actual vs Predicted
 plt.figure(figsize=(8, 6))
 plt.scatter(y_test, y_pred, alpha=0.6, color='blue')
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
@@ -69,3 +66,4 @@ y_new_pred_rounded = np.round(y_new_pred)
 y_new_actual = new_df["placement"]
 print(y_new_pred)
 print(y_new_actual.tolist())
+
