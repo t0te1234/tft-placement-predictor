@@ -20,14 +20,11 @@ regr = RandomForestRegressor(
 )
 regr.fit(X_train, y_train)
 y_pred = regr.predict(X_test)
-y_pred_rounded = np.round(y_pred)
 print("MSE:", mean_squared_error(y_test, y_pred))
 print("R²:", r2_score(y_test, y_pred))
 
 importances = regr.feature_importances_
 indices = np.argsort(importances)[::-1]
-
-print("\nTop 10 features by importance:")
 for i in range(min(10, len(indices))):
     print(f"{X.columns[indices[i]]}: {importances[indices[i]]:.4f}")
 
@@ -35,23 +32,24 @@ plt.figure(figsize=(8, 6))
 plt.scatter(y_test, y_pred, alpha=0.6, color='blue')
 plt.plot([y_test.min(), y_test.max()], [y_test.min(), y_test.max()], 'r--', lw=2)
 plt.xlabel('Actual Placement')
-plt.ylabel('Predicted Placement (Rounded)')
+plt.ylabel('Predicted Placement')
 plt.title('Actual vs Predicted Placement')
 plt.grid(True)
 plt.show()
 
 
-plt.hist(y_pred_rounded, bins=int(y_pred_rounded.max() - y_pred_rounded.min() + 1),
+plt.hist(y_pred, bins=int(y_pred.max() - y_pred.min() + 1),
          alpha=0.7, label='Predicted')
 plt.hist(y_test, bins=int(y_test.max() - y_test.min() + 1),
          alpha=0.5, label='Actual')
-plt.xlabel("Placement (rounded)")
+plt.xlabel("Placement")
 plt.ylabel("Count")
 plt.title("Distribution of Actual vs Predicted")
 plt.legend()
 plt.show()
 
-
+# Used to test accuracy of model by providing specific games
+'''
 def prepare_features(new_df, reference_columns):
     for col in reference_columns:
         if col not in new_df:
@@ -59,12 +57,11 @@ def prepare_features(new_df, reference_columns):
     return new_df[reference_columns]
 
 
-new_df = pd.read_csv("processed.csv")
+new_df = pd.read_csv("testgames.csv")
 X_new = prepare_features(new_df, X.columns)
 y_new_pred = regr.predict(X_new)
-y_new_pred_rounded = np.round(y_new_pred)
 y_new_actual = new_df["placement"]
 print(y_new_pred)
 print(y_new_actual.tolist())
-
+'''
 
