@@ -14,7 +14,7 @@ This project processes **Teamfight Tactics (TFT) match data** and trains a regre
   - Exports processed data to `processed.csv`.
 
 - **Regression modeling**  
-  - Supports multiple models (Linear Regression, Random Forest, XGBoost, etc.).  
+  - Current most accurate model is Random Forest.  
   - Predicts final placement (1–8).  
   - Includes evaluation with Mean Squared Error (MSE) and R² score.  
 
