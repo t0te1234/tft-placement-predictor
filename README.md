@@ -50,3 +50,9 @@ This project processes **Teamfight Tactics (TFT) match data** and trains a regre
      python Model.py
      ```
    - Evaluates predictions and prints metrics (MSE, R²).
+
+---
+## Requirements
+Install dependencies with:
+```bash
+pip install -r requirements.txt
